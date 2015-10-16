@@ -1,0 +1,2 @@
+$(".users").append("<%= escape_javascript(render partial: 'form', locals: {user: @user, title: 'Create user'}) %>")
+$('#newUser').modal('show')

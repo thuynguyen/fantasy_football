@@ -1,0 +1,4 @@
+%h3 List of Users
+.pull-right= link_to "New User", new_user_path, remote: true, :class => "btn btn-primary"
+.users
+  = render partial: "users", locals: {users: @users}

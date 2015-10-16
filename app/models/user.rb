@@ -7,6 +7,8 @@ class User < ActiveRecord::Base
   has_many :user_teams, dependent: :destroy
   has_many :teams, through: :user_teams
 
+  scope :players, -> {where(is_admin: false)}
+
   private
   def email_required?
     false

@@ -1,0 +1,15 @@
+%table.table.table-hover
+  %thead
+    %tr
+      %th First Name
+      %th Last Name
+      %th
+
+  %tbody
+    - users.map do |user|
+      %tr
+        %td= user.first_name
+        %td= user.last_name
+        %td
+          = link_to "", edit_user_path(user), remote: true, class: "glyphicon glyphicon-pencil"
+          = link_to "", user_path(user), remote: true, method: :delete, data: {confirm: "Are you sure"}, class: "glyphicon glyphicon-trash"

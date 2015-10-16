@@ -4,6 +4,7 @@
   <li><%= link_to 'Games', games_path%></li>
   <li><%= link_to 'History', games_path%></li>
   <li><%= link_to 'Stats', games_path%></li>
+  <li><%= link_to 'Logout', destroy_user_session_path, method: :delete%></li>
 <% else %>
   <li><%= link_to 'Sign in', new_user_session_path %></li>
 <% end %>
