@@ -1,0 +1,20 @@
+%table.table.table-hover
+  %thead
+    %tr
+      %th Team
+      %th Opponent Team
+      %th Team score
+      %th Opponent Team score
+      %th Winner
+      %th
+  %tbody
+    - games.each do |game|
+      %tr
+        %td= game.team.try(:name)
+        %td= game.opponent_team.try(:name)
+        %td= game.team_score
+        %td= game.opponent_team_score
+        %td= game.winner
+        %td
+          = link_to '', edit_game_path(game), remote: true, class: "glyphicon glyphicon-pencil"
+          = link_to '', game_path(game), :method => :delete, :data => { :confirm => 'Are you sure?' }, class: "glyphicon glyphicon-trash"

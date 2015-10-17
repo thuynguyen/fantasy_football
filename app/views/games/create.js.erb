@@ -1,0 +1,9 @@
+$(".games").html("<%= escape_javascript(render partial: 'games', locals: {games: @games}) %>")
+<%- if @game.errors.any?%>
+  $('#popup_game').modal('show');
+<%- else%>
+  $('#popup_game').on('hidden', function(){
+    $(this).data('modal', null);
+  });
+  $('#popup_game').modal('hide')
+<%- end%>

@@ -7,12 +7,12 @@
       .modal-body
         #choose_team
           .pull-left= radio_button_tag "game", "list", true, :class => "radio"
-          .pull-left{style: "margin-left: 10px;"}= label_tag "game_list", "Choose Team from listing Teams", :class => "radio-label"
+          .pull-left.mg-left= label_tag "game_list", "Choose Teams from listing Teams", :class => "radio-label"
           .clearfix
           .pull-left= radio_button_tag "game", "new", false, :class => "radio"
-          .pull-left{style: "margin-left: 10px"}= label_tag "game_new", "Choose create new team", :class => "radio-label"
+          .pull-left.mg-left= label_tag "game_new", "Choose Teams from creating new team", :class => "radio-label"
           .clearfix
-        = simple_nested_form_for(@game, :url => url, :method => method, :remote => true, :html => {:class => "form-vertical", :id => "game"}) do |f|
+        = simple_nested_form_for(@game, :url => url, :method => :post, :remote => true, :html => {:class => "form-vertical", :id => "game"}) do |f|
           = f.error_notification
           .form-inputs
             = f.input :on_date, :as => :string, :input_html => {:class => "select-date", :value => f.object.on_date}, :label => "Date"
@@ -53,4 +53,5 @@
           .modal-footer
             .form-actions
               = button_tag 'Save', :class => "btn btn-primary", :id => "save_game"
+              = link_to "Cancel", "#", :class => "btn", "data-dismiss" => "modal", :id => "close"
 

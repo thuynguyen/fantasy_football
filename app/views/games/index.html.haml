@@ -1,0 +1,11 @@
+%h3 Listing games
+.pull-right= link_to 'New Game', new_game_path, remote: true, class: "btn btn-primary"
+.games
+  = render partial: "games", locals: {games: @games}
+#game_form
+
+
+:javascript
+  if (typeof(window.game) == 'undefined')
+    window.game = new Game()
+    window.game.chooseOption()

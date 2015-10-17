@@ -1,0 +1,24 @@
+.modal#popup_update_score.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
+  .modal-dialog
+    .modal-content
+      .modal-header
+        = link_to "X", "#", :class => "close", "data-dismiss" => "modal", :id => "close"
+        %h4#myModalLabel.modal-title Update Game
+      .modal-body
+        = simple_form_for(@game, :url => game_path(@game), :method => :put, :remote => true, :html => {:class => "form-vertical", :id => "game"}) do |f|
+          = f.error_notification
+          .form-inputs
+            .row.old-teams
+              %div.home.col-xs-6
+                .header-info
+                  %h4 Score Team
+                  = f.input :team_score, :label => false
+              %div.away.col-xs-6
+                .header-info
+                  %h4 Score Opponent Team
+                  = f.input :opponent_team_score, :label => false
+          .modal-footer
+            .form-actions
+              = button_tag 'Save', :class => "btn btn-primary", :id => "save_game"
+              = link_to "Cancel", "#", :class => "btn", "data-dismiss" => "modal", :id => "close"
+

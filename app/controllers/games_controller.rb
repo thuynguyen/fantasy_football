@@ -4,13 +4,13 @@ class GamesController < ApplicationController
   # GET /games
   # GET /games.json
   def index
-    @games = Game.all
+    listing_games
   end
 
   # GET /games/1
   # GET /games/1.json
-  def show
-  end
+  # def show
+  # end
 
   # GET /games/new
   def new
@@ -35,13 +35,9 @@ class GamesController < ApplicationController
     end
 
     respond_to do |format|
-      if @game.save
-        format.html { redirect_to @game, notice: 'Game was successfully created.' }
-        format.json { render :show, status: :created, location: @game }
-      else
-        format.html { render :new }
-        format.json { render json: @game.errors, status: :unprocessable_entity }
-      end
+      @game.save
+      listing_games
+      format.js 
     end
   end
 
@@ -49,13 +45,9 @@ class GamesController < ApplicationController
   # PATCH/PUT /games/1.json
   def update
     respond_to do |format|
-      if @game.update(game_params)
-        format.html { redirect_to @game, notice: 'Game was successfully updated.' }
-        format.json { render :show, status: :ok, location: @game }
-      else
-        format.html { render :edit }
-        format.json { render json: @game.errors, status: :unprocessable_entity }
-      end
+      @game.update(game_old_params)
+      listing_games
+      format.js
     end
   end
 
@@ -63,13 +55,17 @@ class GamesController < ApplicationController
   # DELETE /games/1.json
   def destroy
     @game.destroy
-    respond_to do |format|
-      format.html { redirect_to games_url, notice: 'Game was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    listing_games
+    # respond_to do |format|
+    #   format.js { render :index }
+    # end
+    redirect_to games_path
   end
 
   private
+    def listing_games
+      @games = Game.all.order("created_at DESC")
+    end
     # Use callbacks to share common setup or constraints between actions.
     def set_game
       @game = Game.find(params[:id])

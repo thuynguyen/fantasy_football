@@ -1,6 +1,6 @@
 $(".users").html("<%= escape_javascript(render partial: 'users', locals: {users: @users, title: 'Create user'}) %>")
 <%- if @user.errors.any?%>
-  $('#newuser').modal('show');
+  $('#newUser').modal('show');
 <%- else%>
   $('#newUser').on('hidden', function(){
     $(this).data('modal', null);

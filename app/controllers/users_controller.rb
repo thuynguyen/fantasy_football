@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:edit, :update, :destroy]
   skip_before_filter :authenticate_user!, only: :show
   def index
-    list_of_users
+    listing_users
   end
 
   def new
@@ -17,7 +17,7 @@ class UsersController < ApplicationController
     
     respond_to do |format|
       if @user.save
-        list_of_users
+        listing_users
         format.js 
       else
         format.js { render json: @user.errors, status: :unprocessable_entity }
@@ -28,7 +28,7 @@ class UsersController < ApplicationController
   def update
     respond_to do |format|
       if @user.update(user_params)
-        list_of_users
+        listing_users
         format.js 
       else
         format.js { render json: @user.errors, status: :unprocessable_entity }
@@ -38,18 +38,16 @@ class UsersController < ApplicationController
 
   def destroy
     @user.destroy
-    list_of_users
+    listing_users
     respond_to do |format|
       format.js { render :index }
     end
-    #redirect_to users_path, format: 'js'
-  end
-
-  def list_of_users
-    @users = User.players.order("first_name, last_name")
   end
 
   private
+    def listing_users
+      @users = User.players.order("first_name, last_name")
+    end
     def set_user
       @user = User.find(params[:id])
     end
