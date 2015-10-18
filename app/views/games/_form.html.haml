@@ -15,7 +15,7 @@
         = simple_nested_form_for(@game, :url => url, :method => :post, :remote => true, :html => {:class => "form-vertical", :id => "game"}) do |f|
           = f.error_notification
           .form-inputs
-            = f.input :on_date, :as => :string, :input_html => {:class => "select-date", :value => f.object.on_date}, :label => "Date"
+            = f.input :on_date, :input_html => {:class => "select-date", :value => f.object.on_date}, :label => "Date"
             = hidden_field_tag "old_list_team", true
             .row.old-teams
               %div.home.col-xs-6

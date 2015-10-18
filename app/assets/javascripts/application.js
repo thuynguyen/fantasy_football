@@ -14,7 +14,5 @@
 //= require jquery_ujs
 //= require bootstrap-sprockets
 //= require jquery_nested_form
-//= require modernizr-custom
-//= require bootstrap-datepicker
 //= require games
 //= require init

@@ -1,5 +1,5 @@
 class GamesController < ApplicationController
-  before_action :set_game, only: [:show, :edit, :update, :destroy]
+  before_action :set_game, only: [:show, :edit, :update, :destroy, :history, :join_match, :users_team]
 
   # GET /games
   # GET /games.json
@@ -9,8 +9,9 @@ class GamesController < ApplicationController
 
   # GET /games/1
   # GET /games/1.json
-  # def show
-  # end
+  def show
+    @user_teams = @game.team.user_teams
+  end
 
   # GET /games/new
   def new
@@ -62,9 +63,30 @@ class GamesController < ApplicationController
     redirect_to games_path
   end
 
+  def history
+    @games = Game.histories(@game.id)
+  end
+
+  def stats 
+    @users = User.players.order("first_name, last_name")
+  end
+  
+  # Create maximum 3 games in a match
+  def join_match
+    match = Match.create()
+    @game.update_attributes(match_id: match.id)
+    2.times do |time|
+      game = Game.new 
+      game.attributes = @game.attributes.except("id", "team_score", "opponent_team_score")
+      game.save
+    end
+    listing_games
+  end
+
   private
     def listing_games
-      @games = Game.all.order("created_at DESC")
+      @games = Game.listing_games
+
     end
     # Use callbacks to share common setup or constraints between actions.
     def set_game

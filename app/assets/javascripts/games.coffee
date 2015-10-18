@@ -1,7 +1,6 @@
 class window.Game
   contructor: ->
     @chooseOption()
-    @datePicker()
 
   chooseOption: =>
     $("#game_form").delegate "input[type=radio]", "click", ->
@@ -14,9 +13,3 @@ class window.Game
         $(".old-teams").addClass("hidden")
         $(".new-team").removeClass("hidden")
         $("#old_list_team").attr("value", false)
-
-  datePicker: =>
-    $("#game_on_date").datepicker({"format": "dd-mm-yyyy"})
-    $('.datepicker1').datepicker
-      format: 'mm/dd/yyyy'
-      todayHighlight: true
