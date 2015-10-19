@@ -1,0 +1,19 @@
+%table.table.table-hover
+  %thead
+    %tr
+      %th First Name
+      %th Last Name
+      %th Join in number of teams
+      %th Play in number of games
+      %th Play in number of matches
+      %th Best combination of players
+
+  %tbody
+    - users.map do |user|
+      %tr
+        %td= user.first_name
+        %td= user.last_name
+        %td= user.teams.count
+        %td= user.teams.joins(:games).count + user.teams.joins(:opponent_games).count
+        %td= user.joined_match.count
+        %td= user.best_combination_of_players

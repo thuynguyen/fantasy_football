@@ -21,13 +21,13 @@
               %div.home.col-xs-6
                 .header-info
                   %h4 Team
-                  = f.input :team_id, :collection => Team.order("name ASC"), :as => :select, :selected => f.object.new_record? ?  [] : f.object.team.id, :label => false, :prompt => "Select one"
+                  = f.input :team_id, :collection => @teams, :as => :select, :selected => f.object.new_record? ?  [] : f.object.team.id, :label => false, :include_blank => false
                   #team_error.font-error
                   = #f.input :team_score, :label => 'Score'
               %div.away.col-xs-6
                 .header-info
                   %h4 Opponent Team
-                  = f.input :opponent_team_id, :collection => Team.order("name ASC"), :as => :select, :selected => f.object.new_record? ?  "" : f.object.team.id, :label => false, :prompt => "Select one"
+                  = f.input :opponent_team_id, :collection => @teams, :as => :select, :selected => f.object.new_record? ?  "" : f.object.team.id, :label => false, :include_blank => false
                   = #f.input :opponent_team_score, :label => "Score"
             .row.hidden.new-team
               .home.col-xs-6
@@ -36,7 +36,7 @@
                 = f.fields_for :team do |t| 
                   = t.input :name
                   = t.fields_for :user_teams do |u| 
-                    = u.input :user_id, :collection => User.all.order("first_name").map{|user| [user.first_name, user.id]}, as: :select, label: false, prompt: "Select User"
+                    = u.input :user_id, :collection => @users, as: :select, label: false, :include_blank => false
                     = u.input :team_id, as: :hidden, input_html: {value: t.object.id}
                     = u.link_to_remove "Remove"
                   = t.link_to_add "Add User", :user_teams
@@ -46,7 +46,7 @@
                 = f.fields_for :opponent_team do |ot| 
                   = ot.input :name
                   = ot.fields_for :user_teams do |u| 
-                    = u.input :user_id, :collection => User.all.order("first_name").map{|user| [user.first_name, user.id]}, as: :select, label: false, prompt: "Select User"
+                    = u.input :user_id, :collection => @users, as: :select, label: false, :include_blank => false
                     = u.input :team_id, as: :hidden, input_html: {value: ot.object.id}
                     = u.link_to_remove "Remove"
                   = ot.link_to_add "Add User", :user_teams

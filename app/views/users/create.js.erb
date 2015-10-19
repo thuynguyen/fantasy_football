@@ -4,3 +4,4 @@ $(".users").html("<%= escape_javascript(render partial: 'users', locals: {users:
 <%- else%>
   $('#newUser').modal('hide')
 <%- end%>
+$(".modal-backdrop").hide()

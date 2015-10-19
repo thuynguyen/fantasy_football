@@ -15,6 +15,8 @@ class GamesController < ApplicationController
 
   # GET /games/new
   def new
+    @teams = Team.order("name ASC")
+    @users = User.players.order("first_name").map{|user| [user.first_name, user.id]}
     @game = Game.new
     @team = @game.build_team
     @opponent_team = @game.build_opponent_team

@@ -1,0 +1,7 @@
+- if user_signed_in? 
+  %li= link_to 'Users', users_path, class: "#{params[:controller] == 'users' ? 'active' : ''}"
+  %li= link_to 'Games', games_path, class: "#{(params[:controller] == 'games' && params[:action] == 'index') ? 'active' : ''}"
+  %li= link_to 'Stats', stats_games_path, class: "#{(params[:controller] == 'games' && params[:action] == 'stats') ? 'active' : ''}"
+  %li= link_to 'Logout', destroy_user_session_path, method: :delete
+- else 
+  %li= link_to 'Sign in', new_user_session_path 

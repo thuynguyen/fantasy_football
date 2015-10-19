@@ -1,0 +1,15 @@
+%table.table.table-hover
+  %thead
+    %tr
+      %th First Name
+      %th Last Name
+      %th
+
+  %tbody
+    - @users.map do |user|
+      %tr
+        %td= user.first_name
+        %td= user.last_name
+        %td
+          = #link_to "Update score", "#", remote: true
+ 
