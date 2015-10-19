@@ -1,0 +1,21 @@
+%table.table.table-hover
+  %thead
+    %tr
+      %th Fullname
+      %th Team
+      %th Score
+      
+  %tbody
+    - @user_teams.each do |user_team|
+      %tr
+        %td= user_team.user.fullname
+        %td= user_team.team.name
+        %td
+          - games = user_team.team.games
+          %table.table.table-hover
+            %tbody
+              - games.map do |game|
+                %tr
+                  %td= game.user_score.try(:score)
+
+        

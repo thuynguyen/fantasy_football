@@ -1,7 +1,6 @@
 %table.table.table-hover
   %thead
     %tr
-      %th Match
       %th Team
       %th Opponent Team
       %th Team score
@@ -12,11 +11,6 @@
   %tbody
     - @games.map do |game|
       %tr
-        %td
-          - if game.match_id.blank?
-            = link_to "Join Match", join_match_game_path(game), remote: true, method: :put, class: "btn btn-primary", data: {confirm: "Do you want to join football match?"}
-          - else
-            = link_to "Joined Match", "#", class: "btn btn-primary", disabled: :disabled
         %td= game.team.try(:name)
         %td= game.opponent_team.try(:name)
         %td= game.team_score

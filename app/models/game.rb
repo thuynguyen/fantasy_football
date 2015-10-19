@@ -27,7 +27,7 @@ class Game < ActiveRecord::Base
   end
 
   def self.listing_games
-    games = self.where("on_date >= ?", Time.zone.now.beginning_of_day).order("match_id")
+    games = self.order("match_id")
     matches = {}
     games.map do |game|
       matches[game.match_id] = [] if matches[game.match_id].nil?

@@ -20,13 +20,13 @@
             .row.old-teams
               %div.home.col-xs-6
                 .header-info
-                  %h4 Team
+                  %h5 Team
                   = f.input :team_id, :collection => @teams, :as => :select, :selected => f.object.new_record? ?  [] : f.object.team.id, :label => false, :include_blank => false
                   #team_error.font-error
                   = #f.input :team_score, :label => 'Score'
               %div.away.col-xs-6
                 .header-info
-                  %h4 Opponent Team
+                  %h5 Opponent Team
                   = f.input :opponent_team_id, :collection => @teams, :as => :select, :selected => f.object.new_record? ?  "" : f.object.team.id, :label => false, :include_blank => false
                   = #f.input :opponent_team_score, :label => "Score"
             .row.hidden.new-team
@@ -35,6 +35,7 @@
                   %h4 Team
                 = f.fields_for :team do |t| 
                   = t.input :name
+                  %h5 Choose user
                   = t.fields_for :user_teams do |u| 
                     = u.input :user_id, :collection => @users, as: :select, label: false, :include_blank => false
                     = u.input :team_id, as: :hidden, input_html: {value: t.object.id}
@@ -45,6 +46,7 @@
                   %h4 Opponent Team
                 = f.fields_for :opponent_team do |ot| 
                   = ot.input :name
+                  %h5 Choose user
                   = ot.fields_for :user_teams do |u| 
                     = u.input :user_id, :collection => @users, as: :select, label: false, :include_blank => false
                     = u.input :team_id, as: :hidden, input_html: {value: ot.object.id}
