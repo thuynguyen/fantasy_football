@@ -25,7 +25,7 @@ class User < ActiveRecord::Base
     matches = Match.where(id: self.joined_match.map(&:match_id))
     teams = []
     matches.map do |match|
-      teams << match.winner
+      teams << match.winner if match.winner != "Undefined Winner"
     end
     best_teams = teams.uniq.max_by{ |team| teams.count( team ) }
     best_teams
