@@ -6,11 +6,15 @@ class Game < ActiveRecord::Base
   accepts_nested_attributes_for :team, :opponent_team
   after_create :create_user_score
 
-  #validates :team_id, :opponent_team_id, presence: true
-
   def winner
     if (team_score.present? && opponent_team_score.present?) 
-      (team_score > opponent_team_score) ? self.team.name : self.opponent_team.name
+      if (team_score > opponent_team_score) 
+        self.team.name
+      elsif (team_score < opponent_team_score)
+        self.opponent_team.name
+      elsif (team_score == opponent_team_score)
+        ""
+      end
     else
       ""
     end
