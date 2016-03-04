@@ -34,7 +34,7 @@
       - else
         - game = games[key].first
         %tr
-          %td{:rowspan=>3}
+          %td{:rowspan=> game.match.games.count}
             - if game.match_id.blank?
               = link_to "Join Match", join_match_game_path(game), remote: true, method: :put, class: "btn btn-primary", data: {confirm: "Do you want to join football match?"}
             - else
