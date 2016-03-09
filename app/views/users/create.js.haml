@@ -1,0 +1,10 @@
+
+- if @user.errors.any?
+  - errors = @user.errors.messages
+  $("#first_name").html("#{escape_javascript(errors[:first_name][0].to_s)}")
+  $('#newUser').modal('show')
+- else
+  $(".users").html("#{escape_javascript(render partial: 'users', locals: {users: @users, title: 'Create user'}) }")
+  $('#newUser').modal('hide')
+  
+$(".modal-backdrop").hide()

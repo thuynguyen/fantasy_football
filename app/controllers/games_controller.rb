@@ -38,8 +38,9 @@ class GamesController < ApplicationController
     end
 
     respond_to do |format|
-      @game.save
-      listing_games
+      if @game.save
+        listing_games
+      end
       format.js 
     end
   end

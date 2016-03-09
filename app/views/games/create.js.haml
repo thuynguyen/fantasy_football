@@ -1,0 +1,18 @@
+
+- if @game.errors.any?
+  - team_error = @game.team.errors.messages
+  - opp_team_error = @game.opponent_team.errors.messages
+  - if team_error[:name].nil?
+    $("#team_name_err").html("")
+  - else
+    $("#team_name_err").html("#{team_error[:name][0].to_s}")
+  
+  - if opp_team_error[:name].nil?
+    $("#opp_team_name_err").html("")
+  - else
+    $("#opp_team_name_err").html("#{opp_team_error[:name][0].to_s}")
+  $('#popup_game').modal('show');
+- else
+  $(".games").html("#{ escape_javascript(render partial: 'games', locals: {games: @games}) }")
+  
+  $('#popup_game').modal('hide')

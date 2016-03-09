@@ -12,6 +12,7 @@
             .form-inputs
               .col-xs-12
                 = f.input :first_name, label: false, placeholder: "First name"
+                #first_name.red_text
                 = f.input :last_name, label: false, placeholder: "Last name"
           .form-actions
             = f.submit nil, :class => 'btn btn-primary'

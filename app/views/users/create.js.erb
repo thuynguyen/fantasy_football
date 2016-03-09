@@ -1,7 +1,0 @@
-$(".users").html("<%= escape_javascript(render partial: 'users', locals: {users: @users, title: 'Create user'}) %>")
-<%- if @user.errors.any?%>
-  $('#newUser').modal('show')
-<%- else%>
-  $('#newUser').modal('hide')
-<%- end%>
-$(".modal-backdrop").hide()

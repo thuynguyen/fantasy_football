@@ -35,6 +35,7 @@
                   %h4 Team
                 = f.fields_for :team do |t| 
                   = t.input :name
+                  #team_name_err.red_text
                   %h5 Choose user
                   = t.fields_for :user_teams do |u| 
                     = u.input :user_id, :collection => @users, as: :select, label: false, :include_blank => false
@@ -46,6 +47,7 @@
                   %h4 Opponent Team
                 = f.fields_for :opponent_team do |ot| 
                   = ot.input :name
+                  #opp_team_name_err.red_text
                   %h5 Choose user
                   = ot.fields_for :user_teams do |u| 
                     = u.input :user_id, :collection => @users, as: :select, label: false, :include_blank => false
