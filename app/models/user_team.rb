@@ -1,5 +1,5 @@
 class UserTeam < ActiveRecord::Base
   belongs_to :user
   belongs_to :team
-  has_many :user_scores
+  has_many :user_scores, dependent: :destroy
 end
