@@ -7,15 +7,12 @@ class Game < ActiveRecord::Base
   after_create :create_user_score
 
   def winner
-    if (team_score.present? && opponent_team_score.present?) 
-      if (team_score > opponent_team_score) 
-        self.team.name
-      elsif (team_score < opponent_team_score)
-        self.opponent_team.name
-      elsif (team_score == opponent_team_score)
-        ""
-      end
-    else
+    return "" unless (team_score.present? && opponent_team_score.present?) 
+    if (team_score > opponent_team_score) 
+      self.team.name
+    elsif (team_score < opponent_team_score)
+      self.opponent_team.name
+    elsif (team_score == opponent_team_score)
       ""
     end
   end
