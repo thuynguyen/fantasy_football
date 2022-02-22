@@ -27,7 +27,7 @@ class Game < ActiveRecord::Base
     games = self.order("match_id")
     matches = {}
     games.map do |game|
-      matches[game.match_id] = [] if matches[game.match_id].nil?
+      matches[game.match_id] ||= []
       matches[game.match_id] << game
     end
     matches
